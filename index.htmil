@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday Samii 🎉</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to bottom right,#030303, #400101);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+    .container {
+      text-align: center;
+    }
+    .envelope {
+      width: 200px;
+      height: 150px;
+      background:#57030a;
+      border-radius: 10px;
+      position: relative;
+      margin: 0 auto 20px;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: bold;
+      font-size: 16px;
+      text-shadow: 1px 1px 2px #000;
+      z-index: 3;
+      transition: transform 2s, background 2s;
+    }
+    .envelope:hover {
+      transform: scale(1.05);
+      background: #8a0d1d;
+    }
+    .envelope::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #d6d0c3 50%, transparent 50%);
+      z-index: 1;
+      border-radius: 10px;
+      transition: transform 0.5s ease-in-out;
+    }
+    .open .envelope::before {
+      transform: rotateX(180deg);
+    }
+    .message {
+      display: none;
+      background: #f2bbbb;
+      border-radius: 12px;
+      padding: 20px;
+      max-width: 400px;
+      margin: 0 auto;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      animation: fadeIn 1s forwards;
+    }
+    .open .message {
+      display: block;
+    }
+    .images-wrapper {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+    .open .images-wrapper {
+      opacity: 1;
+    }
+    .side-image {
+      width: 150px;
+      height: 150px;
+      border-radius: 20px;
+      object-fit: cover;
+      animation: fadeIn 2s ease forwards;
+    }
+    .main-image {
+      width: 300px;
+      border: 3px solid black;
+      box-shadow: 0 0 15px #fff;
+      margin-top: 20px;
+      animation: fadeIn 2s ease forwards;
+    }
+    @keyframes confetti {
+      0% { transform: translateY(0) translateX(0); opacity: 1; }
+      100% { transform: translateY(800px) translateX(100px); opacity: 0; }
+    }
+    .confetti {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      background: gold;
+      animation: confetti 7s infinite ease-in-out;
+      opacity: 0;
+      border-radius: 50%;
+      box-shadow: 0 0 5px gold, 0 0 10px pink, 0 0 15px #ff69b4;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="birthdayCard">
+    <div class="images-wrapper">
+      <img src="/mnt/data/IMG_20240727_160018.jpg" alt="Side Image Left" class="side-image">
+      <div class="envelope" onclick="openCard()">
+        <span style="z-index: 3; position: relative; color: white;">Click To Open</span>
+      </div>
+      <img src="/mnt/data/IMG_20241025_090352.jpg" alt="Side Image Right" class="side-image">
+    </div>
+    <div class="message" id="message">
+      <h2>Happy Birthday, Samii! 🎉</h2>
+      <p>Dear Samii,<br><br>
+        Happy Birthday to one of the sweetest souls I know! 💖<br>
+                                 ATTENTION DEAREST😙!!<br>
+                                ✨COURTEOUS WISHES AHEAD✨<br>
+         (ofcoure bro from the Mariana Trench of my samundar sa dil💖-Only for uhh!!😉)<br>
+        So here it starts....<br>
+        May your day be full of laughter, love, and all the things that make you smile.<br>
+        You deserve so much happiness — not just today, but every single day.<br><br>
+        Here’s a little something made just for you, with lots of love.<br><br>
+        — from your slightly chaotic but awesome friend ✨
+      </p>
+      <img src="/mnt/data/IMG_20241216_205219.jpg" alt="Main Image" class="main-image">
+    </div>
+  </div>
+
+  <script>
+    function openCard() {
+      const container = document.getElementById('birthdayCard');
+      container.classList.add('open');
+      launchConfetti();
+    }
+
+    function launchConfetti() {
+      for (let i = 0; i < 50; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = ['#ffd700', '#ffc0cb'][Math.floor(Math.random() * 2)];
+        confetti.style.animationDuration = 2 + Math.random() * 3 + 's';
+        confetti.style.opacity = 1;
+        confetti.style.position = 'fixed';
+        confetti.style.animationDelay = i * 0.05 + 's';
+        confetti.style.boxShadow = '0 0 5px gold, 0 0 10px pink, 0 0 15px #ff69b4';
+        document.body.appendChild(confetti);
+        setTimeout(() => confetti.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>
